@@ -6,7 +6,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".Login">
+    tools:context="me.ivanity.espah.SignUp">
 
     <EditText
         android:layout_width="fill_parent"
@@ -14,8 +14,7 @@
         android:id="@+id/editText"
         android:inputType="text"
         android:hint="@string/username"
-        android:layout_marginBottom="84dp"
-        android:layout_above="@+id/button"
+        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -26,10 +25,9 @@
         android:ems="10"
         android:id="@+id/editText3"
         android:hint="@string/password"
-        android:layout_alignTop="@+id/editText"
+        android:layout_below="@+id/editText4"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="34dp" />
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,18 +35,40 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/espah"
         android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/editText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="125dp" />
+        android:layout_marginBottom="72dp" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login"
+        android:text="@string/signup"
         android:id="@+id/button"
         android:singleLine="true"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/editText5"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="34dp" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText4"
+        android:hint="@string/email"
+        android:layout_below="@+id/editText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:inputType="text" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText5"
+        android:hint="@string/reenter"
+        android:layout_below="@+id/editText3"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:inputType="textPassword" />
 
 </RelativeLayout>
+

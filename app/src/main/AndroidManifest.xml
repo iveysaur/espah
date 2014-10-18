@@ -19,3 +19,14 @@
     </application>
 
 </manifest>
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <application>
+        <activity android:name="me.ivanity.espah.SignUp"
+            android:label="@string/title_activity_sign_up"
+            >
+        </activity>
+    </application>
+
+</manifest>
