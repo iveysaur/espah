@@ -14,7 +14,8 @@
         android:id="@+id/editText"
         android:inputType="text"
         android:hint="@string/username"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="60dp"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -29,20 +30,10 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/espah"
-        android:id="@+id/textView2"
-        android:layout_above="@+id/editText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="72dp" />
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/signup"
+        android:text="@string/signUp"
         android:id="@+id/button"
         android:singleLine="true"
         android:layout_below="@+id/editText5"
@@ -69,17 +60,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:inputType="textPassword" />
-
-    <SurfaceView
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:id="@+id/surfaceView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:background="#ffff6361" />
 
 </RelativeLayout>
 

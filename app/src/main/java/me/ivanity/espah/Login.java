@@ -53,7 +53,7 @@ public class Login extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void test(View view) {
+    public void login(View view) {
         if (username.getText().length() > 0 && password.getText().length() > 0) {
             new AsyncTask<Void, Void, Void>() {
                 @Override
