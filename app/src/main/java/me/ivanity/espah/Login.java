@@ -57,21 +57,21 @@ public class Login extends Activity {
             new AsyncTask<Void, Void, Void>() {
                 @Override
                 protected Void doInBackground(Void... params) {
-                    postData(username.getText().toString(), password.getText().toString());
+                    postData();
                     return null;
                 }
             }.execute(null, null, null);
         }
     }
 
-    public void postData(String username, String password) {
+    public void postData() {
         HttpClient httpClient = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost("http://192.168.1.104:1299/api/droid");
+        HttpPost httpPost = new HttpPost("http://192.168.1.106:1299/api/login");
         JSONObject json = new JSONObject();
 
         try {
-            json.put("username", username);
-            json.put("password", password);
+            json.put("username", username.getText().toString());
+            json.put("password", password.getText().toString());
             StringEntity str = new StringEntity(json.toString());
             httpPost.setEntity(str);
 
