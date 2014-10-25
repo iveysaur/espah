@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editText3"
+        android:id="@+id/editText2"
         android:hint="@string/password"
         android:layout_alignTop="@+id/editText"
         android:layout_alignParentRight="true"
@@ -49,6 +49,19 @@
         android:singleLine="true"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="test" />
+
+    <SurfaceView
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:id="@+id/surfaceView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="#ffff6361"
+        android:text="@string/login" />
 
 </RelativeLayout>
