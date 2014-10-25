@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="me.ivanity.espah" >
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -17,9 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="me.ivanity.espah.SignUp"
-            android:label="@string/title_activity_sign_up"
-            >
+        <activity
+            android:name=".SignUp"
+            android:label="@string/title_activity_sign_up" >
+        </activity>
+        <activity
+            android:name=".mainPage"
+            android:label="@string/title_activity_main_page" >
         </activity>
     </application>
 

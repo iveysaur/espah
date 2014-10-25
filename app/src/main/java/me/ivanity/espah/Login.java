@@ -1,6 +1,7 @@
 package me.ivanity.espah;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -79,7 +80,10 @@ public class Login extends Activity {
             InputStream input = response.getEntity().getContent();
             BufferedReader buffer = new BufferedReader(new InputStreamReader(input));
 
-            System.out.println(buffer.readLine());
+            if (buffer.readLine().equalsIgnoreCase("success")) {
+                Intent intent = new Intent(this, mainPage.class);
+                startActivity(intent);
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
