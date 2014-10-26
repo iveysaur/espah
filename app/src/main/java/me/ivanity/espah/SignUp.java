@@ -1,17 +1,40 @@
 package me.ivanity.espah;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 
 public class SignUp extends Activity {
+    private EditText username = null;
+    private EditText password = null;
+    private EditText password2 = null;
+    private EditText email = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        username = (EditText)findViewById(R.id.editText);
+        password = (EditText)findViewById(R.id.editText2);
+        password2 = (EditText)findViewById(R.id.editText3);
+        email = (EditText)findViewById(R.id.editText4);
     }
 
 
@@ -32,5 +55,44 @@ public class SignUp extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void signUp(View view) {
+        String pass = password.getText().toString();
+        String pass2 = password.getText().toString();
+        if (username.getText().length() > 0 && password.getText().length() > 0 && email.getText().length() > 0 && pass.equals(pass2)) {
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... params) {
+                    postData();
+                    return null;
+                }
+            }.execute(null, null, null);
+        }
+    }
+
+    public void postData() {
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost("http://192.168.1.106:1299/api/create");
+        JSONObject json = new JSONObject();
+
+        try {
+            json.put("username", username.getText().toString());
+            json.put("password", password.getText().toString());
+            json.put("email", email.getText().toString());
+            StringEntity str = new StringEntity(json.toString());
+            httpPost.setEntity(str);
+
+            HttpResponse response = httpClient.execute(httpPost);
+            InputStream input = response.getEntity().getContent();
+            BufferedReader buffer = new BufferedReader(new InputStreamReader(input));
+
+            if (buffer.readLine().equalsIgnoreCase("success")) {
+                Intent intent = new Intent(this, mainPage.class);
+                startActivity(intent);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }
