@@ -9,6 +9,7 @@ import android.view.View;
 
 
 public class Welcome extends Activity {
+    final int SIGN_UP_INTENT = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +39,19 @@ public class Welcome extends Activity {
 
     public void login(View view) {
         Intent intent = new Intent(this, Login.class);
-        startActivity(intent);
+        startActivityForResult(intent, SIGN_UP_INTENT);
     }
 
     public void signUp(View view) {
         Intent intent = new Intent(this, SignUp.class);
-        startActivity(intent);
+        startActivityForResult(intent, SIGN_UP_INTENT);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == SIGN_UP_INTENT && resultCode == RESULT_OK) {
+            Intent intent = new Intent(this, mainPage.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }

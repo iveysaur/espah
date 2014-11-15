@@ -67,7 +67,7 @@ public class Login extends Activity {
 
     public void postData() {
         HttpClient httpClient = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost("http://192.168.1.106:1299/api/login");
+        HttpPost httpPost = new HttpPost("http://192.168.1.105:1299/api/login");
         JSONObject json = new JSONObject();
 
         try {
@@ -81,8 +81,8 @@ public class Login extends Activity {
             BufferedReader buffer = new BufferedReader(new InputStreamReader(input));
 
             if (buffer.readLine().equalsIgnoreCase("success")) {
-                Intent intent = new Intent(this, mainPage.class);
-                startActivity(intent);
+                setResult(RESULT_OK);
+                finish();
             }
         } catch (Exception e) {
             System.out.println(e);

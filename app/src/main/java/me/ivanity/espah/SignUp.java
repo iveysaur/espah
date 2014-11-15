@@ -59,7 +59,7 @@ public class SignUp extends Activity {
 
     public void signUp(View view) {
         String pass = password.getText().toString();
-        String pass2 = password.getText().toString();
+        String pass2 = password2.getText().toString();
         if (username.getText().length() > 0 && password.getText().length() > 0 && email.getText().length() > 0 && pass.equals(pass2)) {
             new AsyncTask<Void, Void, Void>() {
                 @Override
@@ -73,7 +73,7 @@ public class SignUp extends Activity {
 
     public void postData() {
         HttpClient httpClient = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost("http://192.168.1.106:1299/api/create");
+        HttpPost httpPost = new HttpPost("http://192.168.1.105:1299/api/create");
         JSONObject json = new JSONObject();
 
         try {
@@ -88,8 +88,8 @@ public class SignUp extends Activity {
             BufferedReader buffer = new BufferedReader(new InputStreamReader(input));
 
             if (buffer.readLine().equalsIgnoreCase("success")) {
-                Intent intent = new Intent(this, mainPage.class);
-                startActivity(intent);
+                setResult(RESULT_OK);
+                finish();
             }
         } catch (Exception e) {
             System.out.println(e);
