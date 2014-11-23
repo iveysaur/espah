@@ -1,0 +1,91 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="me.ivanity.espah.PlayMenu"
+    android:background="#ffa68cd4">
+
+    <SurfaceView
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:id="@+id/surfaceView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="#ffd4404a" />
+
+    <SurfaceView
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:id="@+id/surfaceView2"
+        android:layout_below="@+id/surfaceView"
+        android:layout_centerHorizontal="true"
+        android:background="#ff759ad4" />
+
+    <SurfaceView
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:id="@+id/surfaceView3"
+        android:background="#ff77d48c"
+        android:layout_below="@+id/surfaceView2"
+        android:layout_alignLeft="@+id/surfaceView2"
+        android:layout_alignStart="@+id/surfaceView2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/play_with_friends"
+        android:id="@+id/textView"
+        android:textSize="30sp"
+        android:layout_below="@+id/surfaceView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:textColor="#ffffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/play_friends_desc"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"
+        android:textColor="#ffffff"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/play_publicly"
+        android:id="@+id/textView2"
+        android:textSize="30sp"
+        android:layout_alignTop="@+id/surfaceView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Share and guess photos from people worldwide"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Espah"
+        android:id="@+id/textView5"
+        android:textSize="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:textColor="#ffffff" />
+
+</RelativeLayout>

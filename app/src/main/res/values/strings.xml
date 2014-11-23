@@ -15,5 +15,9 @@
     <string name="title_activity_main_page">mainPage</string>
     <string name="loggedIn">Logged in!</string>
     <string name="title_activity_welcome">Welcome</string>
+    <string name="title_activity_menu">Menu</string>
+    <string name="play_with_friends">Play With Friends</string>
+    <string name="play_publicly">Play Publicly</string>
+    <string name="play_friends_desc">Share and guess photos from your friends</string>
 
 </resources>

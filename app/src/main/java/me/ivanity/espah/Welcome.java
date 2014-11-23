@@ -49,7 +49,7 @@ public class Welcome extends Activity {
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == SIGN_UP_INTENT && resultCode == RESULT_OK) {
-            Intent intent = new Intent(this, mainPage.class);
+            Intent intent = new Intent(this, PlayMenu.class);
             startActivity(intent);
             finish();
         }

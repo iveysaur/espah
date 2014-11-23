@@ -68,6 +68,7 @@ public class Login extends Activity {
         JSONObject json = new JSONObject();
 
         try {
+            /*
             json.put("username", username.getText().toString());
             json.put("password", password.getText().toString());
             StringEntity str = new StringEntity(json.toString());
@@ -78,9 +79,12 @@ public class Login extends Activity {
             BufferedReader buffer = new BufferedReader(new InputStreamReader(input));
 
             if (buffer.readLine().equalsIgnoreCase("success")) {
+            */
                 setResult(RESULT_OK);
                 finish();
+            /*
             }
+            */
         } catch (Exception e) {
             System.out.println(e);
         }

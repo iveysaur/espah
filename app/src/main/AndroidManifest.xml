@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".Welcome"
+            android:name="me.ivanity.espah.Welcome"
             android:label="@string/title_activity_welcome" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,16 +19,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Login"
+            android:name="me.ivanity.espah.Login"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".SignUp"
+            android:name="me.ivanity.espah.SignUp"
             android:label="@string/title_activity_sign_up" >
         </activity>
         <activity
-            android:name=".mainPage"
+            android:name=".MainPage"
             android:label="@string/title_activity_main_page" >
+        </activity>
+        <activity
+            android:name=".PlayMenu"
+            android:label="@string/title_activity_menu" >
         </activity>
     </application>
 
