@@ -3,12 +3,15 @@ package me.ivanity.espah;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
 public class SignUp extends Activity {
+    static final String TAG = "SignUpActivity";
+
     private EditText username = null;
     private EditText password = null;
     private EditText password2 = null;
@@ -45,9 +48,10 @@ public class SignUp extends Activity {
     }
 
     public void signUp(View view) {
+        Log.i(TAG, "Signup clicked");
         String pass = password.getText().toString();
         String pass2 = password2.getText().toString();
-        if (username.getText().length() > 0 && password.getText().length() > 0 && email.getText().length() > 0 && pass.equals(pass2)) {
+        if (true || username.getText().length() > 0 && password.getText().length() > 0 && email.getText().length() > 0 && pass.equals(pass2)) {
             new AsyncTask<Void, Void, Void>() {
                 @Override
                 protected Void doInBackground(Void... params) {
@@ -56,9 +60,12 @@ public class SignUp extends Activity {
                         setResult(RESULT_OK);
                         finish();
                     }
+                    Log.i(TAG, "Background");
                     return null;
                 }
             }.execute(null, null, null);
+        } else {
+            Log.i(TAG, "Condition failed");
         }
     }
 }

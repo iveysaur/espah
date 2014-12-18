@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +23,7 @@ import java.io.InputStreamReader;
 
 
 public class Login extends Activity {
+    final static String TAG = "LoginActivity";
     private EditText username = null;
     private EditText password = null;
 
@@ -55,38 +57,16 @@ public class Login extends Activity {
             new AsyncTask<Void, Void, Void>() {
                 @Override
                 protected Void doInBackground(Void... params) {
-                    postData();
+                    if (API.login(username.getText().toString(), password.getText().toString())) {
+                        setResult(RESULT_OK);
+                        finish();
+                    } else {
+                        // failed!
+                        Log.i(TAG, "Login failed.");
+                    }
                     return null;
                 }
             }.execute(null, null, null);
-        }
-    }
-
-    public void postData() {
-        HttpClient httpClient = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost("http://192.168.1.105:1299/api/login");
-        JSONObject json = new JSONObject();
-
-        try {
-            /*
-            json.put("username", username.getText().toString());
-            json.put("password", password.getText().toString());
-            StringEntity str = new StringEntity(json.toString());
-            httpPost.setEntity(str);
-
-            HttpResponse response = httpClient.execute(httpPost);
-            InputStream input = response.getEntity().getContent();
-            BufferedReader buffer = new BufferedReader(new InputStreamReader(input));
-
-            if (buffer.readLine().equalsIgnoreCase("success")) {
-            */
-                setResult(RESULT_OK);
-                finish();
-            /*
-            }
-            */
-        } catch (Exception e) {
-            System.out.println(e);
         }
     }
 }

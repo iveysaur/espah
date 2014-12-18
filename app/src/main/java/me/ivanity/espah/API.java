@@ -8,6 +8,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,11 +36,49 @@ public class API {
         if (result == null) return false;
 
         try {
-            return result.getBoolean("status");
+            if (!result.getBoolean("status"))
+                return false;
+
+            // We're good!
+            authkey = result.getString("authkey");
+
+            return true;
         } catch (JSONException e) {
             Log.e(TAG, "createUser failed to find success");
             return false;
         }
+    }
+
+    public static boolean login(String username, String password) {
+        JSONObject json = new JSONObject();
+        try {
+            json.put("username", username);
+            json.put("password", password);
+        } catch (JSONException e) {
+            Log.e(TAG, "login failed to create JSONObject");
+            return false;
+        }
+
+        JSONObject result = stringToJson(postHTTPString(API_URL + "/user/login", json));
+
+        if (result == null) return false;
+
+        try {
+            if (!result.getBoolean("status"))
+                return false;
+
+            // We're good!
+            authkey = result.getString("authkey");
+
+            return true;
+        } catch (JSONException e) {
+            Log.e(TAG, "login failed to find success");
+            return false;
+        }
+    }
+
+    public static JSONObject getQuestion() {
+        return stringToJson(getHTTPString(API_URL + "/question/question"));
     }
 
     private static JSONObject stringToJson(String data) {
