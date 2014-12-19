@@ -1,5 +1,7 @@
 package me.ivanity.espah;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import org.apache.http.HttpResponse;
@@ -19,6 +21,13 @@ public class API {
     final static String TAG = "API";
     final static String API_URL = "http://192.168.1.104:1299/api";
     static String authkey;
+    static Context ctx = null;
+
+    public static void init(Context ctx) {
+        SharedPreferences preferences = ctx.getSharedPreferences("API", 0);
+        authkey = preferences.getString("authkey", "");
+        API.ctx = ctx;
+    }
 
     public static boolean createUser(String username, String password, String email) {
         JSONObject json = new JSONObject();
@@ -41,6 +50,7 @@ public class API {
 
             // We're good!
             authkey = result.getString("authkey");
+            saveAuthkey();
 
             return true;
         } catch (JSONException e) {
@@ -69,6 +79,7 @@ public class API {
 
             // We're good!
             authkey = result.getString("authkey");
+            saveAuthkey();
 
             return true;
         } catch (JSONException e) {
@@ -126,6 +137,14 @@ public class API {
         }
 
         return "";
+    }
+
+    private static void saveAuthkey()
+    {
+        SharedPreferences preferences = ctx.getSharedPreferences("API", 0);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("authkey", authkey);
+        editor.apply();
     }
 
 }

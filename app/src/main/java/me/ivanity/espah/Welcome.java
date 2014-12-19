@@ -14,7 +14,13 @@ public class Welcome extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+
+        API.init(this);
+
+        if (!API.authkey.equals(""))
+            goToGame();
+        else
+            setContentView(R.layout.activity_welcome);
     }
 
 
@@ -49,9 +55,13 @@ public class Welcome extends Activity {
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == SIGN_UP_INTENT && resultCode == RESULT_OK) {
-            Intent intent = new Intent(this, PlayMenu.class);
-            startActivity(intent);
-            finish();
+            goToGame();
         }
+    }
+
+    void goToGame() {
+        Intent intent = new Intent(this, PlayMenu.class);
+        startActivity(intent);
+        finish();
     }
 }
