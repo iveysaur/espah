@@ -38,6 +38,10 @@
             android:name="me.ivanity.espah.TakePhotoActivity"
             android:label="@string/title_activity_take_photo" >
         </activity>
+        <activity
+            android:name="me.ivanity.espah.GuessActivity"
+            android:label="@string/title_activity_guess" >
+        </activity>
     </application>
 
 </manifest>

@@ -20,5 +20,6 @@
     <string name="play_publicly">Play Publicly</string>
     <string name="play_friends_desc">Share and guess photos from your friends</string>
     <string name="title_activity_take_photo">TakePhotoActivity</string>
+    <string name="title_activity_guess">GuessActivity</string>
 
 </resources>

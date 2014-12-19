@@ -96,6 +96,20 @@ public class API {
         return stringToJson(getHTTPString(API_URL + "/question/answer"));
     }
 
+    public static boolean checkAnswer(int questionid, int answerid) {
+
+        JSONObject result = stringToJson(getHTTPString(API_URL + "/question/check/" + questionid + "/" + answerid));
+
+        if (result == null) return false;
+
+        try {
+            return result.getBoolean("correct");
+        } catch (Exception e) {
+            Log.e(TAG, "Could not get correctness");
+            return false;
+        }
+    }
+
     private static JSONObject stringToJson(String data) {
         try {
             JSONObject jObject = new JSONObject(data);
