@@ -92,6 +92,10 @@ public class API {
         return stringToJson(getHTTPString(API_URL + "/question/question"));
     }
 
+    public static JSONObject getAnswer() {
+        return stringToJson(getHTTPString(API_URL + "/question/answer"));
+    }
+
     private static JSONObject stringToJson(String data) {
         try {
             JSONObject jObject = new JSONObject(data);

@@ -1,19 +1,61 @@
 package me.ivanity.espah;
 
 import android.app.Activity;
+import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import org.json.JSONObject;
 
 
 public class TakePhotoActivity extends Activity {
+    final String TAG = "TakePhotoActivity";
+
+    Context ctx;
+    Activity activity;
+
+    JSONObject answerObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                answerObj = API.getAnswer();
+                activity.runOnUiThread(new Runnable() {
+                    public void run() {
+                        TextView questionTxt = (TextView) findViewById(R.id.question_text);
+                        try {
+                            questionTxt.setText(answerObj.getString("answer"));
+                        } catch (Exception e) {
+                            Log.e(TAG, "bad");
+                            System.out.println(e);
+                        }
+                    }
+                });
+
+                return null;
+            }
+        }.execute(null, null, null);
+
+        ctx = this;
+        activity = this;
+
         setContentView(R.layout.activity_take_photo);
+
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -15,7 +15,7 @@
     <SurfaceView
         android:layout_width="fill_parent"
         android:layout_height="150dp"
-        android:id="@+id/surfaceView2"
+        android:id="@+id/btnPlayWithFriends"
         android:layout_below="@+id/surfaceView"
         android:layout_centerHorizontal="true"
         android:background="#ff759ad4" />
@@ -25,9 +25,9 @@
         android:layout_height="150dp"
         android:id="@+id/surfaceView3"
         android:background="#ff77d48c"
-        android:layout_below="@+id/surfaceView2"
-        android:layout_alignLeft="@+id/surfaceView2"
-        android:layout_alignStart="@+id/surfaceView2" />
+        android:layout_below="@+id/btnPlayWithFriends"
+        android:layout_alignLeft="@+id/btnPlayWithFriends"
+        android:layout_alignStart="@+id/btnPlayWithFriends" />
 
     <TextView
         android:layout_width="wrap_content"
