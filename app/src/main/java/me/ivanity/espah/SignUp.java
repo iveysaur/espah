@@ -23,8 +23,8 @@ public class SignUp extends Activity {
         setContentView(R.layout.activity_sign_up);
         username = (EditText)findViewById(R.id.editText);
         password = (EditText)findViewById(R.id.editText2);
-        password2 = (EditText)findViewById(R.id.editText3);
-        email = (EditText)findViewById(R.id.editText4);
+        email = (EditText)findViewById(R.id.editText3);
+        password2 = (EditText)findViewById(R.id.editText4);
     }
 
 
@@ -49,9 +49,11 @@ public class SignUp extends Activity {
 
     public void signUp(View view) {
         Log.i(TAG, "Signup clicked");
+        String user = username.getText().toString();
+        String mail = email.getText().toString();
         String pass = password.getText().toString();
         String pass2 = password2.getText().toString();
-        if (true || username.getText().length() > 0 && password.getText().length() > 0 && email.getText().length() > 0 && pass.equals(pass2)) {
+        if (user.length() > 0 && pass.length() > 0 && mail.length() > 0 && pass.equals(pass2)) {
             new AsyncTask<Void, Void, Void>() {
                 @Override
                 protected Void doInBackground(Void... params) {

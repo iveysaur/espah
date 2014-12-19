@@ -17,7 +17,7 @@ import org.json.JSONObject;
  */
 public class API {
     final static String TAG = "API";
-    final static String API_URL = "http://espur.jaxbot.me/api";
+    final static String API_URL = "http://192.168.1.104:1299/api";
     static String authkey;
 
     public static boolean createUser(String username, String password, String email) {
