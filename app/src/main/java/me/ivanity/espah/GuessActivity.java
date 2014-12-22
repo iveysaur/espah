@@ -2,11 +2,14 @@ package me.ivanity.espah;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SurfaceView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -38,10 +41,10 @@ public class GuessActivity extends Activity {
                         //TextView questionTxt = (TextView) findViewById(R.id.question_text);
                         try {
                             JSONArray answers = questionObj.getJSONArray("answers");
-                            setupAnswer(R.id.txtAnswerA, answers.getJSONObject(0));
-                            setupAnswer(R.id.txtAnswerB, answers.getJSONObject(1));
-                            setupAnswer(R.id.txtAnswerC, answers.getJSONObject(2));
-                            setupAnswer(R.id.txtAnswerD, answers.getJSONObject(3));
+                            setupAnswer(R.id.txtAnswerA, R.id.surfaceViewA, answers.getJSONObject(0));
+                            setupAnswer(R.id.txtAnswerB, R.id.surfaceViewB, answers.getJSONObject(1));
+                            setupAnswer(R.id.txtAnswerC, R.id.surfaceViewC, answers.getJSONObject(2));
+                            setupAnswer(R.id.txtAnswerD, R.id.surfaceViewD, answers.getJSONObject(3));
                         } catch (Exception e) {
                             Log.e(TAG, "bad");
                             System.out.println(e);
@@ -56,7 +59,7 @@ public class GuessActivity extends Activity {
         setContentView(R.layout.activity_guess);
     }
 
-    void checkAnswer(final int answerid) {
+    void checkAnswer(final int answerid, final int viewId, final int svId) {
         final int questionid;
         try {
            questionid = questionObj.getInt("id");
@@ -71,7 +74,14 @@ public class GuessActivity extends Activity {
                 final boolean correct = API.checkAnswer(questionid, answerid);
                 activity.runOnUiThread(new Runnable() {
                     public void run() {
-                        System.out.println(correct);
+                        if (correct) {
+                            ((TextView)(findViewById(viewId))).setTextColor(Color.GREEN);
+                            ((SurfaceView)findViewById(svId)).setBackgroundColor(Color.GREEN);
+                        } else {
+                            ((TextView)(findViewById(viewId))).setTextColor(Color.RED);
+                            ((SurfaceView)findViewById(svId)).setBackgroundColor(Color.RED);
+                        }
+                        findViewById(R.id.nextButton).setVisibility(View.VISIBLE);
                     }
                 });
 
@@ -102,17 +112,20 @@ public class GuessActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    void setupAnswer(final int id, final JSONObject obj) {
+    void setupAnswer(final int id, final int svid, final JSONObject obj) {
         try {
             final int answerid = obj.getInt("id");
-            TextView tv = (TextView)findViewById(id);
-            tv.setText(obj.getString("answer"));
-            tv.setOnClickListener(new View.OnClickListener() {
+            View.OnClickListener listener = new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    checkAnswer(answerid);
+                    checkAnswer(answerid, id, svid);
                 }
-            });
+            };
+            TextView tv = (TextView)findViewById(id);
+            tv.setText(obj.getString("answer"));
+            tv.setOnClickListener(listener);
+            SurfaceView sv = (SurfaceView)findViewById(svid);
+            sv.setOnClickListener(listener);
 
         } catch (Exception e) {
             System.out.println(e);
