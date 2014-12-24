@@ -27,7 +27,7 @@
             android:label="@string/title_activity_sign_up" >
         </activity>
         <activity
-            android:name="me.ivanity.espah.MainPage"
+            android:name="me.ivanity.espah.mainPage"
             android:label="@string/title_activity_main_page" >
         </activity>
         <activity
@@ -36,11 +36,11 @@
         </activity>
         <activity
             android:name="me.ivanity.espah.TakePhotoActivity"
-            android:label="@string/title_activity_take_photo" >
+            android:label="@string/title_activity_main_page" >
         </activity>
         <activity
             android:name="me.ivanity.espah.GuessActivity"
-            android:label="@string/title_activity_guess" >
+            android:label="@string/title_activity_main_page" >
         </activity>
     </application>
 

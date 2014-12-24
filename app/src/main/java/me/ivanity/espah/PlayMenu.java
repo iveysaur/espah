@@ -8,9 +8,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.Random;
+
 
 public class PlayMenu extends Activity {
     Context ctx;
+    final int GUESS_REQUEST = 100;
+    final int TAKE_REQUEST = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +26,40 @@ public class PlayMenu extends Activity {
         findViewById(R.id.btnPlayWithFriends).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ctx, GuessActivity.class);
-                startActivity(intent);
+                showNewThing();
             }
         });
     }
 
+    void showGuess()
+    {
+        Intent intent = new Intent(ctx, GuessActivity.class);
+        startActivityForResult(intent, GUESS_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK)
+        {
+            showNewThing();
+        }
+    }
+
+    void showTakePhoto()
+    {
+        Intent intent = new Intent(ctx, TakePhotoActivity.class);
+        startActivityForResult(intent, TAKE_REQUEST);
+    }
+
+    void showNewThing() {
+        Random rnd = new Random(843823);
+        if (rnd.nextDouble() > 0.5)
+            showGuess();
+        else
+            showTakePhoto();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

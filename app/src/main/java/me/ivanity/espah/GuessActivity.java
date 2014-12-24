@@ -75,11 +75,9 @@ public class GuessActivity extends Activity {
                 activity.runOnUiThread(new Runnable() {
                     public void run() {
                         if (correct) {
-                            ((TextView)(findViewById(viewId))).setTextColor(Color.GREEN);
-                            ((SurfaceView)findViewById(svId)).setBackgroundColor(Color.GREEN);
+                            (findViewById(svId)).setBackgroundColor(Color.GREEN);
                         } else {
-                            ((TextView)(findViewById(viewId))).setTextColor(Color.RED);
-                            ((SurfaceView)findViewById(svId)).setBackgroundColor(Color.RED);
+                            (findViewById(svId)).setBackgroundColor(Color.RED);
                         }
                         findViewById(R.id.nextButton).setVisibility(View.VISIBLE);
                     }

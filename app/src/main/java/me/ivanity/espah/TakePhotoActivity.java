@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -49,6 +51,25 @@ public class TakePhotoActivity extends Activity {
         activity = this;
 
         setContentView(R.layout.activity_take_photo);
+
+        Button btnCancel = (Button)findViewById(R.id.btnCancel);
+        Button btnPost = (Button)findViewById(R.id.btnPost);
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setResult(RESULT_CANCELED);
+                finish();
+            }
+        });
+
+        btnPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setResult(RESULT_OK);
+                finish();
+            }
+        });
 
     }
 
