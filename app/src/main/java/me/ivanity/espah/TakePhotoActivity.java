@@ -2,11 +2,13 @@ package me.ivanity.espah;
 
 import android.app.Activity;
 import android.content.Context;
+import android.hardware.Camera;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +24,44 @@ public class TakePhotoActivity extends Activity {
     Activity activity;
 
     JSONObject answerObj;
+
+    Camera mCamera;
+    SurfaceView mPreview;
+
+    private boolean safeCameraOpen(int id) {
+        boolean qOpened = false;
+
+        try {
+            releaseCameraAndPreview();
+            for (int i = 0; i < Camera.getNumberOfCameras(); i++) {
+                Camera.CameraInfo info = new Camera.CameraInfo();
+                Camera.getCameraInfo(i, info);
+
+                if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+                    mCamera = Camera.open(i);
+                }
+            }
+
+            // TODO: Fail if camera is null
+
+            mCamera.setDisplayOrientation(90);
+            mCamera.setPreviewDisplay(((SurfaceView)(findViewById(R.id.surfaceView))).getHolder());
+            mCamera.startPreview();
+            qOpened = (mCamera != null);
+        } catch (Exception e) {
+            Log.e(getString(R.string.app_name), "failed to open Camera");
+            e.printStackTrace();
+        }
+
+        return qOpened;
+    }
+
+    private void releaseCameraAndPreview() {
+        if (mCamera != null) {
+            mCamera.release();
+            mCamera = null;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +116,7 @@ public class TakePhotoActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        safeCameraOpen(1);
     }
 
     @Override

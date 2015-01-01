@@ -23,6 +23,7 @@ public class PlayMenu extends Activity {
 
         ctx = this;
 
+        showTakePhoto();
         findViewById(R.id.btnPlayWithFriends).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
