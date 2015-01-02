@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffffff</color>
+    <color name="espur_red">#ffd4404a</color>
+    <color name="espur_lightblue">#ff759ad4</color>
+    <color name="espur_green">#ff77d48c</color>
+</resources>

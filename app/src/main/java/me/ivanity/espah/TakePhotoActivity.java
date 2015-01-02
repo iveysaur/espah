@@ -54,8 +54,8 @@ public class TakePhotoActivity extends Activity {
             SurfaceHolder holder = sv.getHolder();
             ViewGroup.LayoutParams params = sv.getLayoutParams();
             Camera.Size size = mCamera.getParameters().getPreviewSize();
-            params.height = size.width;
-            params.width = size.height;
+            params.height = size.width + 150;
+            params.width = size.height + 150;
             sv.setLayoutParams(params);
             holder.addCallback(new SurfaceHolder.Callback() {
                 @Override
