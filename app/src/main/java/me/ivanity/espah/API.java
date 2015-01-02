@@ -19,7 +19,7 @@ import org.json.JSONObject;
  */
 public class API {
     final static String TAG = "API";
-    final static String API_URL = "http://192.168.1.107:1299/api";
+    final static String API_URL = "http://192.168.1.104:1299/api";
     static String authkey;
     static Context ctx = null;
 
@@ -80,6 +80,7 @@ public class API {
             // We're good!
             authkey = result.getString("authkey");
             saveAuthkey();
+            Log.i(TAG, "Welcome: " + authkey);
 
             return true;
         } catch (JSONException e) {
