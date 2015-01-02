@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,7 @@ public class TakePhotoActivity extends Activity {
         boolean qOpened = false;
 
         try {
+
             releaseCameraAndPreview();
             for (int i = 0; i < Camera.getNumberOfCameras(); i++) {
                 Camera.CameraInfo info = new Camera.CameraInfo();
@@ -46,26 +48,37 @@ public class TakePhotoActivity extends Activity {
                     mCamera = Camera.open(i);
                 }
             }
-
             // TODO: Fail if camera is null
 
-            SurfaceView sv = (SurfaceView) findViewById(R.id.surfaceView);
-            Camera.Size size = mCamera.getParameters().getPreviewSize();
-            List<Camera.Size> sizes = mCamera.getParameters().getSupportedPreviewSizes();
-            Camera.Size optimalSize = getOptimalPreviewSize(sizes, getResources().getDisplayMetrics().widthPixels, getResources().getDisplayMetrics().heightPixels);
+            final SurfaceView sv = (SurfaceView) findViewById(R.id.surfaceView);
 
-            //mCamera.getParameters().setPreviewSize(optimalSize.width, optimalSize.height);
-            mCamera.setDisplayOrientation(90);
-            mCamera.setPreviewDisplay(sv.getHolder());
-            mCamera.startPreview();
+            SurfaceHolder holder = sv.getHolder();
             ViewGroup.LayoutParams params = sv.getLayoutParams();
-            Log.i("a", "" + sv.getMeasuredWidth());
-            params.height = (int)(((double)getResources().getDisplayMetrics().widthPixels / (double)size.height) * size.height);
-            System.out.println(getResources().getDisplayMetrics().widthPixels);
-            System.out.println(size.width + " " + size.height);
-            Log.i("banan", "" + params.height);
+            Camera.Size size = mCamera.getParameters().getPreviewSize();
+            params.height = size.width;
+            params.width = size.height;
             sv.setLayoutParams(params);
-            qOpened = (mCamera != null);
+            holder.addCallback(new SurfaceHolder.Callback() {
+                @Override
+                public void surfaceCreated(SurfaceHolder surfaceHolder) {
+                }
+
+                @Override
+                public void surfaceChanged(SurfaceHolder surfaceHolder, int i1, int i2, int i3) {
+                    mCamera.setDisplayOrientation(90);
+                    try {
+                        mCamera.setPreviewDisplay(sv.getHolder());
+                    } catch (Exception e) {
+
+                    }
+                    mCamera.startPreview();
+                }
+
+                @Override
+                public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+
+                }
+            });
         } catch (Exception e) {
             Log.e(getString(R.string.app_name), "failed to open Camera");
             e.printStackTrace();
@@ -192,5 +205,11 @@ public class TakePhotoActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        releaseCameraAndPreview();
     }
 }
