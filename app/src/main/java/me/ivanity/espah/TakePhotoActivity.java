@@ -1,5 +1,6 @@
 package me.ivanity.espah;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.hardware.Camera;
@@ -10,11 +11,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import org.json.JSONObject;
+
+import java.util.List;
 
 
 public class TakePhotoActivity extends Activity {
@@ -44,9 +49,22 @@ public class TakePhotoActivity extends Activity {
 
             // TODO: Fail if camera is null
 
+            SurfaceView sv = (SurfaceView) findViewById(R.id.surfaceView);
+            Camera.Size size = mCamera.getParameters().getPreviewSize();
+            List<Camera.Size> sizes = mCamera.getParameters().getSupportedPreviewSizes();
+            Camera.Size optimalSize = getOptimalPreviewSize(sizes, getResources().getDisplayMetrics().widthPixels, getResources().getDisplayMetrics().heightPixels);
+
+            //mCamera.getParameters().setPreviewSize(optimalSize.width, optimalSize.height);
             mCamera.setDisplayOrientation(90);
-            mCamera.setPreviewDisplay(((SurfaceView)(findViewById(R.id.surfaceView))).getHolder());
+            mCamera.setPreviewDisplay(sv.getHolder());
             mCamera.startPreview();
+            ViewGroup.LayoutParams params = sv.getLayoutParams();
+            Log.i("a", "" + sv.getMeasuredWidth());
+            params.height = (int)(((double)getResources().getDisplayMetrics().widthPixels / (double)size.height) * size.height);
+            System.out.println(getResources().getDisplayMetrics().widthPixels);
+            System.out.println(size.width + " " + size.height);
+            Log.i("banan", "" + params.height);
+            sv.setLayoutParams(params);
             qOpened = (mCamera != null);
         } catch (Exception e) {
             Log.e(getString(R.string.app_name), "failed to open Camera");
@@ -55,6 +73,41 @@ public class TakePhotoActivity extends Activity {
 
         return qOpened;
     }
+    private Camera.Size getOptimalPreviewSize(List<Camera.Size> sizes, int w, int h) {
+        final double ASPECT_TOLERANCE = 0.05;
+        double targetRatio = (double) w/h;
+
+        if (sizes==null) return null;
+
+        Camera.Size optimalSize = null;
+
+        double minDiff = Double.MAX_VALUE;
+
+        int targetHeight = h;
+
+        // Find size
+        for (Camera.Size size : sizes) {
+            double ratio = (double) size.width / size.height;
+            if (Math.abs(ratio - targetRatio) > ASPECT_TOLERANCE) continue;
+            if (Math.abs(size.height - targetHeight) < minDiff) {
+                optimalSize = size;
+                minDiff = Math.abs(size.height - targetHeight);
+            }
+        }
+
+        if (optimalSize == null) {
+            minDiff = Double.MAX_VALUE;
+            for (Camera.Size size : sizes) {
+                if (Math.abs(size.height - targetHeight) < minDiff) {
+                    optimalSize = size;
+                    minDiff = Math.abs(size.height - targetHeight);
+                }
+            }
+        }
+        return optimalSize;
+    }
+
+
 
     private void releaseCameraAndPreview() {
         if (mCamera != null) {
