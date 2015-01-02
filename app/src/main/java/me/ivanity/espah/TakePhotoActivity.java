@@ -18,8 +18,14 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import org.apache.http.Header;
+import org.apache.http.HttpEntity;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 
@@ -137,8 +143,34 @@ public class TakePhotoActivity extends Activity {
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setResult(RESULT_OK);
-                finish();
+                Camera.ShutterCallback shutter_cb = new Camera.ShutterCallback() {
+                    @Override
+                    public void onShutter() {
+
+                    }
+                };
+                Camera.PictureCallback picture_cb = new Camera.PictureCallback() {
+                    @Override
+                    public void onPictureTaken(byte[] bytes, Camera camera) {
+
+                    }
+                };
+                Camera.PictureCallback picture_jpeg_cb = new Camera.PictureCallback() {
+                    @Override
+                    public void onPictureTaken(final byte[] bytes, Camera camera) {
+                        new AsyncTask<Void, Void, Void>() {
+                            @Override
+                            protected Void doInBackground(Void... params) {
+                                String result = API.postHTTPBytes(API.API_URL + "/question/upload/1/1", bytes);
+                                System.out.println(result);
+                                return null;
+                            }
+                        }.execute(null, null, null);
+                    }
+                };
+                mCamera.takePicture(shutter_cb, picture_cb, picture_jpeg_cb);
+                //setResult(RESULT_OK);
+                //finish();
             }
         });
 

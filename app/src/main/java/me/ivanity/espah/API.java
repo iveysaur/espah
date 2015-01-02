@@ -7,6 +7,8 @@ import android.util.Log;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ByteArrayEntity;
+import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
@@ -14,12 +16,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 /**
  * Created by jonathan on 12/16/14.
  */
 public class API {
     final static String TAG = "API";
-    final static String API_URL = "http://192.168.1.104:1299/api";
+    final static String API_URL = "http://192.168.1.106:1299/api";
     static String authkey;
     static Context ctx = null;
 
@@ -158,6 +164,25 @@ public class API {
         return "";
     }
 
+    public static String postHTTPBytes(String url, byte[] bytes) {
+        try {
+            DefaultHttpClient httpclient = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost(url);
+
+            httpPost.setHeader("X-X", authkey);
+            InputStreamEntity entity = new InputStreamEntity(new ByteArrayInputStream(bytes), bytes.length);
+            httpPost.setEntity(entity);
+
+            HttpResponse response = httpclient.execute(httpPost);
+            String result = EntityUtils.toString(response.getEntity());
+
+            return result;
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+
+        return "";
+    }
     private static void saveAuthkey()
     {
         SharedPreferences preferences = ctx.getSharedPreferences("API", 0);
