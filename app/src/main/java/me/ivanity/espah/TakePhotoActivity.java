@@ -36,6 +36,7 @@ public class TakePhotoActivity extends Activity {
     Activity activity;
 
     JSONObject answerObj;
+    int mAnswerId = 0;
 
     Camera mCamera;
 
@@ -114,6 +115,7 @@ public class TakePhotoActivity extends Activity {
                         TextView questionTxt = (TextView) findViewById(R.id.question_text);
                         try {
                             questionTxt.setText(answerObj.getString("answer"));
+                            mAnswerId = answerObj.getInt("id");
                             Log.i(TAG, "Question: " + questionTxt.getText());
                         } catch (Exception e) {
                             Log.e(TAG, "bad");
@@ -163,7 +165,7 @@ public class TakePhotoActivity extends Activity {
                         new AsyncTask<Void, Void, Void>() {
                             @Override
                             protected Void doInBackground(Void... params) {
-                                String result = API.postHTTPBytes(API.API_URL + "/question/upload/1/1", bytes);
+                                String result = API.postHTTPBytes(API.API_URL + "/question/upload/" + mAnswerId + "/1", bytes);
                                 System.out.println(result);
                                 setResult(RESULT_OK);
                                 finish();

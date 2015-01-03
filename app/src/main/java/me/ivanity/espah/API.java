@@ -2,6 +2,8 @@ package me.ivanity.espah;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import org.apache.http.HttpResponse;
@@ -26,6 +28,7 @@ import java.io.InputStream;
 public class API {
     final static String TAG = "API";
     final static String API_URL = "http://192.168.1.106:1299/api";
+    final static String STATIC_URL = "http://192.168.1.106:8080/espur/images/";
     static String authkey;
     static Context ctx = null;
 
@@ -117,6 +120,12 @@ public class API {
         }
     }
 
+    public static Bitmap getImage(String file) {
+        byte[] bytes = getHTTPBytes(STATIC_URL + "/" + file + ".jpg");
+        Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        return bmp;
+    }
+
     private static JSONObject stringToJson(String data) {
         try {
             JSONObject jObject = new JSONObject(data);
@@ -142,6 +151,23 @@ public class API {
         }
 
         return "";
+    }
+
+    private static byte[] getHTTPBytes(String url) {
+        System.out.println(url);
+        try {
+            DefaultHttpClient httpclient = new DefaultHttpClient();
+            HttpGet httpget = new HttpGet(url);
+            httpget.setHeader("X-X", authkey);
+
+            HttpResponse response = httpclient.execute(httpget);
+
+            return EntityUtils.toByteArray(response.getEntity());
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
+
+        return null;
     }
 
     private static String postHTTPString(String url, JSONObject json) {

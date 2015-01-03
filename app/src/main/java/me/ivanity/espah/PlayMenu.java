@@ -23,7 +23,6 @@ public class PlayMenu extends Activity {
 
         ctx = this;
 
-        showTakePhoto();
         findViewById(R.id.btnPlayWithFriends).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,7 +43,11 @@ public class PlayMenu extends Activity {
 
         if (resultCode == RESULT_OK)
         {
-            showNewThing();
+            // Do not show two take photos in a row
+            if (requestCode == TAKE_REQUEST)
+                showGuess();
+            else
+                showNewThing();
         }
     }
 
@@ -55,8 +58,9 @@ public class PlayMenu extends Activity {
     }
 
     void showNewThing() {
-        Random rnd = new Random(843823);
-        if (rnd.nextDouble() > 0.5)
+        Random rnd = new Random();
+        System.out.println(rnd.nextDouble());
+        if (rnd.nextDouble() > 0.3)
             showGuess();
         else
             showTakePhoto();
