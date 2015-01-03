@@ -23,7 +23,6 @@ public class PlayMenu extends Activity {
 
         ctx = this;
 
-        showTakePhoto();
         findViewById(R.id.btnPlayWithFriends).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,7 +54,8 @@ public class PlayMenu extends Activity {
     }
 
     void showNewThing() {
-        Random rnd = new Random(843823);
+        Random rnd = new Random();
+        System.out.println(rnd.nextDouble());
         if (rnd.nextDouble() > 0.5)
             showGuess();
         else
