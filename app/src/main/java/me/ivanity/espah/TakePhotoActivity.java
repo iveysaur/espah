@@ -81,7 +81,7 @@ public class TakePhotoActivity extends Activity {
 
                 @Override
                 public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-
+                    releaseCameraAndPreview();
                 }
             });
         } catch (Exception e) {
@@ -94,6 +94,8 @@ public class TakePhotoActivity extends Activity {
 
     private void releaseCameraAndPreview() {
         if (mCamera != null) {
+            mCamera.stopPreview();
+            mCamera.setPreviewCallback(null);
             mCamera.release();
             mCamera = null;
         }
@@ -163,14 +165,14 @@ public class TakePhotoActivity extends Activity {
                             protected Void doInBackground(Void... params) {
                                 String result = API.postHTTPBytes(API.API_URL + "/question/upload/1/1", bytes);
                                 System.out.println(result);
+                                setResult(RESULT_OK);
+                                finish();
                                 return null;
                             }
                         }.execute(null, null, null);
                     }
                 };
                 mCamera.takePicture(shutter_cb, picture_cb, picture_jpeg_cb);
-                //setResult(RESULT_OK);
-                //finish();
             }
         });
 
@@ -206,7 +208,7 @@ public class TakePhotoActivity extends Activity {
 
     @Override
     protected void onPause() {
-        super.onPause();
         releaseCameraAndPreview();
+        super.onPause();
     }
 }
