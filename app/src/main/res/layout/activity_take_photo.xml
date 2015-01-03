@@ -1,59 +1,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_height="fill_parent"
+    android:paddingBottom="0dp"
     tools:context="me.ivanity.espah.TakePhotoActivity"
     android:background="#ffa68cd4"
     xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     android:textAlignment="center">
 
-    <TextView android:text="Example text" android:layout_width="fill_parent"
-        android:layout_height="wrap_content" android:id="@+id/question_text"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:padding="15dp"
-        android:layout_marginBottom="160dp"
-        android:textSize="20dp"
-        android:background="#ff212121"
-        android:textColor="@color/white"
-        android:textAlignment="center" />
-
-    <info.hoang8f.widget.FButton
-        android:textColor="@color/white"
-        fbutton:buttonColor="@color/espur_red"
-        fbutton:cornerRadius="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancel"
-        android:id="@+id/btnCancel"
-        android:layout_marginLeft="15dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <info.hoang8f.widget.FButton
-        android:id="@+id/btnPost"
-        android:text="Post it!"
-        android:textColor="@color/white"
-        fbutton:buttonColor="@color/espur_green"
-        fbutton:cornerRadius="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="15dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <FrameLayout
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_alignBottom="@id/question_text"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_marginBottom="50dp"
         android:padding="0dp"
-        android:background="#000000"
-        android:layout_height="wrap_content">
+        android:background="#000000">
         <SurfaceView
-            android:layout_margin="0dp"
+            android:layout_marginTop="-150dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:id="@+id/surfaceView"
@@ -61,6 +23,54 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             />
-    </FrameLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="300dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/espur_purple"
+        >
+        <TextView android:text="Example text" android:layout_width="fill_parent"
+            android:layout_height="wrap_content" android:id="@+id/question_text"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignStart="@id/frameLayout"
+            android:layout_alignLeft="@id/frameLayout"
+            android:padding="15dp"
+            android:textSize="20dp"
+            android:background="#ff212121"
+            android:textColor="@color/white"
+            android:textAlignment="center" />
+
+        <info.hoang8f.widget.FButton
+            android:textColor="@color/white"
+            fbutton:buttonColor="@color/espur_red"
+            fbutton:cornerRadius="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:id="@+id/btnCancel"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/btnPost"
+            android:text="Post it!"
+            android:textColor="@color/white"
+            fbutton:buttonColor="@color/espur_green"
+            fbutton:cornerRadius="5dp"
+            android:layout_marginBottom="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
 
 </RelativeLayout>
