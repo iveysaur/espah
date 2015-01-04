@@ -114,9 +114,16 @@ public class TakePhotoActivity extends Activity {
                     public void run() {
                         TextView questionTxt = (TextView) findViewById(R.id.question_text);
                         try {
-                            questionTxt.setText(answerObj.getString("answer"));
                             mAnswerId = answerObj.getInt("id");
-                            Log.i(TAG, "Question: " + questionTxt.getText());
+                            if (mAnswerId == -1) {
+                                Log.i(TAG, "Out of questions.");
+                                setResult(RESULT_FIRST_USER);
+                                finish();
+                            } else {
+                                questionTxt.setText(answerObj.getString("answer"));
+                                safeCameraOpen();
+                                Log.i(TAG, "Question: " + questionTxt.getText());
+                            }
                         } catch (Exception e) {
                             Log.e(TAG, "bad");
                             System.out.println(e);
@@ -192,7 +199,6 @@ public class TakePhotoActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        safeCameraOpen();
     }
 
     @Override

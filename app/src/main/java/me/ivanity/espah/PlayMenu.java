@@ -16,6 +16,7 @@ public class PlayMenu extends Activity {
     final int GUESS_REQUEST = 100;
     final int TAKE_REQUEST = 101;
     final int OUTOFPICS_REQUEST = 102;
+    final int OUTOFQUESTIONS_REQUEST = 103;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +49,29 @@ public class PlayMenu extends Activity {
         startActivityForResult(intent, OUTOFPICS_REQUEST);
     }
 
+    void showOutOfQuestions()
+    {
+        Intent intent = new Intent(ctx, OutOfQuestions.class);
+        startActivityForResult(intent, OUTOFQUESTIONS_REQUEST);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         System.out.println("Espur state: " + Espur.showOnlyTakePhoto);
 
+        if (requestCode == OUTOFQUESTIONS_REQUEST)
+        {
+            if (resultCode == RESULT_OK)
+            {
+                System.out.println("Espurring it up");
+                Espur.showOnlyGuesses = true;
+                showNewThing();
+            } else if (resultCode == RESULT_CANCELED) {
+                // TODO: Set up a notification
+            }
+        }
         if (requestCode == OUTOFPICS_REQUEST)
         {
             if (resultCode == RESULT_OK)
@@ -76,7 +94,10 @@ public class PlayMenu extends Activity {
         }
         if (resultCode == RESULT_FIRST_USER)
         {
-            showOutOfPictures();
+            if (requestCode == TAKE_REQUEST)
+                showOutOfQuestions();
+            else
+                showOutOfPictures();
         }
     }
 
@@ -89,7 +110,7 @@ public class PlayMenu extends Activity {
     void showNewThing() {
         Random rnd = new Random();
         System.out.println(rnd.nextDouble());
-        if (rnd.nextDouble() > 0.3 && !Espur.showOnlyTakePhoto)
+        if (Espur.showOnlyGuesses || rnd.nextDouble() > 0.3 && !Espur.showOnlyTakePhoto)
             showGuess();
         else
             showTakePhoto();

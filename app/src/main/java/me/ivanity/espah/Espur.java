@@ -5,4 +5,5 @@ package me.ivanity.espah;
  */
 public class Espur {
     public static boolean showOnlyTakePhoto = false;
+    public static boolean showOnlyGuesses = false;
 }

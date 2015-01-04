@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="0dp"
+    android:background="#ffa68cd4"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    android:textAlignment="center"
+    tools:context="me.ivanity.espah.OutOfQuestions">
+
+    <TextView android:text="Oh no! Looks like you&apos;ve run out of questions!" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:id="@+id/textView6"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <info.hoang8f.widget.FButton
+        android:textColor="@color/white"
+        fbutton:buttonColor="@color/espur_cyan"
+        fbutton:cornerRadius="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done for now, tell me when there&apos;s more!"
+        android:id="@+id/btnLmk"
+        android:layout_below="@+id/btnSelfies"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="22dp"
+        android:layout_alignRight="@+id/btnSelfies"
+        android:layout_alignEnd="@+id/btnSelfies" />
+
+    <info.hoang8f.widget.FButton
+        android:textColor="@color/white"
+        fbutton:buttonColor="@color/espur_indigo"
+        fbutton:cornerRadius="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Just guess other selfies for now!"
+        android:id="@+id/btnSelfies"
+        android:layout_marginTop="31dp"
+        android:layout_below="@+id/textView6"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/textView6"
+        android:layout_alignEnd="@+id/textView6" />
+
+    <TextView android:text="You did nothing wrong, you just beat the game, and now the developers have to add more content. ;)" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:id="@+id/textView7"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/btnLmk"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>

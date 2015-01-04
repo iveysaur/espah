@@ -22,5 +22,6 @@
     <string name="title_activity_guess">What expression is this?</string>
     <string name="title_activity_out_of_pictures">OutOfPictures</string>
     <string name="action_signout">Sign out</string>
+    <string name="title_activity_out_of_questions">OutOfQuestions</string>
 
 </resources>
