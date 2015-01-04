@@ -110,7 +110,11 @@ public class PlayMenu extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_signout) {
+            API.signOut();
+            Intent intent = new Intent(this, Welcome.class);
+            startActivity(intent);
+            finish();
             return true;
         }
 

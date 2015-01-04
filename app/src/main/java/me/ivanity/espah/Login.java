@@ -1,6 +1,7 @@
 package me.ivanity.espah;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -53,6 +54,7 @@ public class Login extends Activity {
     }
 
     public void login(View view) {
+        final Activity act = this;
         if (username.getText().length() > 0 && password.getText().length() > 0) {
             new AsyncTask<Void, Void, Void>() {
                 @Override
@@ -63,10 +65,24 @@ public class Login extends Activity {
                     } else {
                         // failed!
                         Log.i(TAG, "Login failed.");
+                        act.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                showMsg();
+                            }
+                        });
                     }
                     return null;
                 }
             }.execute(null, null, null);
         }
+    }
+
+    void showMsg() {
+        new AlertDialog.Builder(this)
+                .setTitle("Could not sign in")
+                .setMessage("Make sure your username and password are correct, and that your phone is connected to the internet.")
+                .setNeutralButton("Okay", null)
+                .show();
     }
 }

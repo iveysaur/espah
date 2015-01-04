@@ -27,8 +27,8 @@ import java.io.InputStream;
  */
 public class API {
     final static String TAG = "API";
-    final static String API_URL = "http://192.168.1.105:1299/api";
-    final static String STATIC_URL = "http://192.168.1.105:8080/espur/images/";
+    final static String API_URL = "http://192.168.1.106:1299/api";
+    final static String STATIC_URL = "http://192.168.1.106:8080/espur/images/";
     static String authkey;
     static Context ctx = null;
 
@@ -36,6 +36,11 @@ public class API {
         SharedPreferences preferences = ctx.getSharedPreferences("API", 0);
         authkey = preferences.getString("authkey", "");
         API.ctx = ctx;
+    }
+
+    public static void signOut() {
+        authkey = "";
+        saveAuthkey();
     }
 
     public static boolean createUser(String username, String password, String email) {
