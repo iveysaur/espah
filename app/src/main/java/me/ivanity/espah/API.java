@@ -27,8 +27,8 @@ import java.io.InputStream;
  */
 public class API {
     final static String TAG = "API";
-    final static String API_URL = "http://192.168.1.106:1299/api";
-    final static String STATIC_URL = "http://192.168.1.106:8080/espur/images/";
+    final static String API_URL = "http://192.168.1.105:1299/api";
+    final static String STATIC_URL = "http://192.168.1.105:8080/espur/images/";
     static String authkey;
     static Context ctx = null;
 
