@@ -20,5 +20,6 @@
     <string name="play_friends_desc">Share and guess photos from your friends</string>
     <string name="title_activity_take_photo">Selfie this expression!</string>
     <string name="title_activity_guess">What expression is this?</string>
+    <string name="title_activity_out_of_pictures">OutOfPictures</string>
 
 </resources>

@@ -55,6 +55,11 @@ public class GuessActivity extends Activity {
                     public void run() {
                         //TextView questionTxt = (TextView) findViewById(R.id.question_text);
                         try {
+                            if (questionObj.getInt("id") == -1) {
+                                setResult(RESULT_FIRST_USER);
+                                finish();
+                                return;
+                            }
                             answers = questionObj.getJSONArray("answers");
                             mAnswerid = questionObj.getInt("answerid");
                             setupAnswer(R.id.txtAnswerA, R.id.surfaceViewA, answers.getJSONObject(0), "A");

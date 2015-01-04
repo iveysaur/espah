@@ -15,6 +15,7 @@ public class PlayMenu extends Activity {
     Context ctx;
     final int GUESS_REQUEST = 100;
     final int TAKE_REQUEST = 101;
+    final int OUTOFPICS_REQUEST = 102;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +34,38 @@ public class PlayMenu extends Activity {
 
     void showGuess()
     {
+        if (Espur.showOnlyTakePhoto) {
+            showTakePhoto();
+            return;
+        }
         Intent intent = new Intent(ctx, GuessActivity.class);
         startActivityForResult(intent, GUESS_REQUEST);
+    }
+
+    void showOutOfPictures()
+    {
+        Intent intent = new Intent(ctx, OutOfPictures.class);
+        startActivityForResult(intent, OUTOFPICS_REQUEST);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        System.out.println("Espur state: " + Espur.showOnlyTakePhoto);
+
+        if (requestCode == OUTOFPICS_REQUEST)
+        {
+            if (resultCode == RESULT_OK)
+            {
+                System.out.println("Espurring it up");
+                Espur.showOnlyTakePhoto = true;
+                showNewThing();
+            } else if (resultCode == RESULT_CANCELED) {
+                // TODO: Set up a notification
+            }
+            return;
+        }
         if (resultCode == RESULT_OK)
         {
             // Do not show two take photos in a row
@@ -48,6 +73,10 @@ public class PlayMenu extends Activity {
                 showGuess();
             else
                 showNewThing();
+        }
+        if (resultCode == RESULT_FIRST_USER)
+        {
+            showOutOfPictures();
         }
     }
 
@@ -60,7 +89,7 @@ public class PlayMenu extends Activity {
     void showNewThing() {
         Random rnd = new Random();
         System.out.println(rnd.nextDouble());
-        if (rnd.nextDouble() > 0.3)
+        if (rnd.nextDouble() > 0.3 && !Espur.showOnlyTakePhoto)
             showGuess();
         else
             showTakePhoto();
