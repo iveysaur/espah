@@ -27,6 +27,9 @@ public class GuessActivity extends Activity {
     Activity activity;
 
     JSONObject questionObj;
+    JSONArray answers;
+    int mAnswerid = 0;
+    int answerSvId = 0;
 
     boolean hasAnswered = false;
 
@@ -52,7 +55,8 @@ public class GuessActivity extends Activity {
                     public void run() {
                         //TextView questionTxt = (TextView) findViewById(R.id.question_text);
                         try {
-                            JSONArray answers = questionObj.getJSONArray("answers");
+                            answers = questionObj.getJSONArray("answers");
+                            mAnswerid = questionObj.getInt("answerid");
                             setupAnswer(R.id.txtAnswerA, R.id.surfaceViewA, answers.getJSONObject(0), "A");
                             setupAnswer(R.id.txtAnswerB, R.id.surfaceViewB, answers.getJSONObject(1), "B");
                             setupAnswer(R.id.txtAnswerC, R.id.surfaceViewC, answers.getJSONObject(2), "C");
@@ -104,6 +108,7 @@ public class GuessActivity extends Activity {
                         if (correct) {
                             (findViewById(svId)).setBackgroundColor(getResources().getColor(R.color.espur_green));
                         } else {
+                            (findViewById(answerSvId)).setBackgroundColor(getResources().getColor(R.color.espur_green));
                             (findViewById(svId)).setBackgroundColor(getResources().getColor(R.color.espur_red));
                         }
                         findViewById(R.id.nextButton).setVisibility(View.VISIBLE);
@@ -153,6 +158,9 @@ public class GuessActivity extends Activity {
             tv.setOnClickListener(listener);
             SurfaceView sv = (SurfaceView)findViewById(svid);
             sv.setOnClickListener(listener);
+
+            if (answerid == mAnswerid)
+                answerSvId = svid;
 
         } catch (Exception e) {
             System.out.println(e);
