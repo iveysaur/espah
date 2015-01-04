@@ -41,8 +41,7 @@
             android:padding="15dp"
             android:textSize="20dp"
             android:background="#ff212121"
-            android:textColor="@color/white"
-            android:textAlignment="center" />
+            android:textColor="@color/white" />
 
         <info.hoang8f.widget.FButton
             android:textColor="@color/white"
