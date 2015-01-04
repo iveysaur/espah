@@ -6,4 +6,7 @@
     <color name="espur_green">#ff77d48c</color>
     <color name="espur_purple">#ffe7dffd</color>
     <color name="espur_indigo">#3F51B5</color>
+    <color name="espur_blue">#03A9F4</color>
+    <color name="espur_cyan">#00BCD4</color>
+    <color name="espur_darkgray">#333333</color>
 </resources>

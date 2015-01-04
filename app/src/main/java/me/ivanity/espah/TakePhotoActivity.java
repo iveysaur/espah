@@ -36,7 +36,7 @@ public class TakePhotoActivity extends Activity {
     Activity activity;
 
     JSONObject answerObj;
-    int mAnswerId = 0;
+    int mAnswerId = 1;
 
     Camera mCamera;
 
