@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="me.ivanity.espah.PlayMenu"
     android:background="#ffa68cd4">
@@ -74,7 +75,7 @@
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
         android:textSize="20dp"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:gravity="center" />
 
     <TextView
@@ -86,6 +87,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
-        android:textColor="#ffffff" />
+        android:textColor="@color/white" />
 
 </RelativeLayout>
