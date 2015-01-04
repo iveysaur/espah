@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="me.ivanity.espah.Welcome"
-            android:label="@string/title_activity_welcome" >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,19 +25,19 @@
         </activity>
         <activity
             android:name="me.ivanity.espah.SignUp"
-            android:label="@string/title_activity_sign_up" >
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name="me.ivanity.espah.mainPage"
-            android:label="@string/title_activity_main_page" >
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name="me.ivanity.espah.PlayMenu"
-            android:label="@string/title_activity_menu" >
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name="me.ivanity.espah.TakePhotoActivity"
-            android:label="@string/title_activity_main_page" >
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name="me.ivanity.espah.GuessActivity"
