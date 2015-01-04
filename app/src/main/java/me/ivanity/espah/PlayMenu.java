@@ -24,7 +24,7 @@ public class PlayMenu extends Activity {
 
         ctx = this;
 
-        findViewById(R.id.btnPlayWithFriends).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btnPlayPublic).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showNewThing();
