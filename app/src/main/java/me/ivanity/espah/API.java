@@ -131,6 +131,30 @@ public class API {
         return bmp;
     }
 
+    public static boolean sendFeedback(String feedback) {
+        JSONObject json = new JSONObject();
+        try {
+            json.put("feedback", feedback);
+        } catch (JSONException e) {
+            Log.e(TAG, "sendFeedback failed to create JSONObject");
+            return false;
+        }
+
+        JSONObject result = stringToJson(postHTTPString(API_URL + "/user/feedback", json));
+
+        if (result == null) return false;
+
+        try {
+            if (!result.getBoolean("status"))
+                return false;
+
+            return true;
+        } catch (JSONException e) {
+            Log.e(TAG, "sendFeedback failed to find success");
+            return false;
+        }
+    }
+
     private static JSONObject stringToJson(String data) {
         try {
             JSONObject jObject = new JSONObject(data);

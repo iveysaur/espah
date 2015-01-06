@@ -24,5 +24,7 @@
     <string name="action_signout">Sign out</string>
     <string name="title_activity_out_of_questions">OutOfQuestions</string>
     <string name="title_activity_out_of_everything">OutOfEverything</string>
+    <string name="title_activity_feedback">Feedback</string>
+    <string name="action_feedback">Feedback</string>
 
 </resources>
