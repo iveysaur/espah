@@ -75,9 +75,10 @@ public class PlayMenu extends Activity {
                 System.out.println("Espurring it up");
                 Espur.showOnlyGuesses = true;
                 showNewThing();
-            } else if (resultCode == RESULT_CANCELED) {
+            } else if (resultCode == Espur.RESULT_LMK) {
                 // TODO: Set up a notification
             }
+            return;
         }
         if (requestCode == OUTOFPICS_REQUEST)
         {
@@ -86,7 +87,7 @@ public class PlayMenu extends Activity {
                 System.out.println("Espurring it up");
                 Espur.showOnlyTakePhoto = true;
                 showNewThing();
-            } else if (resultCode == RESULT_CANCELED) {
+            } else if (resultCode == Espur.RESULT_LMK) {
                 // TODO: Set up a notification
             }
             return;
@@ -117,6 +118,7 @@ public class PlayMenu extends Activity {
     void showNewThing() {
         Random rnd = new Random();
         System.out.println(rnd.nextDouble());
+
         if (Espur.showOnlyGuesses && Espur.showOnlyTakePhoto) {
             showOutOfEverything();
             return;

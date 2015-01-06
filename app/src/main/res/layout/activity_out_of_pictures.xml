@@ -26,7 +26,7 @@
         fbutton:cornerRadius="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Done for now, tell me when there&apos;s more!"
+        android:text="Done for now, I'll be back soon!"
         android:id="@+id/btnLmk"
         android:layout_below="@+id/btnSelfies"
         android:layout_alignParentLeft="true"
