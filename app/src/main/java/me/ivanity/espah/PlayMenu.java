@@ -1,6 +1,7 @@
 package me.ivanity.espah;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,6 +31,13 @@ public class PlayMenu extends Activity {
             @Override
             public void onClick(View view) {
                 showNewThing();
+            }
+        });
+
+        findViewById(R.id.btnPlayWithFriends).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showMsg();
             }
         });
     }
@@ -152,5 +160,12 @@ public class PlayMenu extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    void showMsg() {
+        new AlertDialog.Builder(this)
+                .setTitle("Coming Soon!")
+                .setNeutralButton("Okay", null)
+                .show();
     }
 }
