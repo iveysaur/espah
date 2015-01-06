@@ -17,6 +17,7 @@ public class PlayMenu extends Activity {
     final int TAKE_REQUEST = 101;
     final int OUTOFPICS_REQUEST = 102;
     final int OUTOFQUESTIONS_REQUEST = 103;
+    final int OUTOFEVERYTHING_REQUEST = 103;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class PlayMenu extends Activity {
 
     void showGuess()
     {
-        if (Espur.showOnlyTakePhoto) {
+        if (Espur.showOnlyTakePhoto && !Espur.showOnlyGuesses) {
             showTakePhoto();
             return;
         }
@@ -53,6 +54,12 @@ public class PlayMenu extends Activity {
     {
         Intent intent = new Intent(ctx, OutOfQuestions.class);
         startActivityForResult(intent, OUTOFQUESTIONS_REQUEST);
+    }
+
+    void showOutOfEverything()
+    {
+        Intent intent = new Intent(ctx, OutOfEverything.class);
+        startActivityForResult(intent, OUTOFEVERYTHING_REQUEST);
     }
 
     @Override
@@ -110,7 +117,12 @@ public class PlayMenu extends Activity {
     void showNewThing() {
         Random rnd = new Random();
         System.out.println(rnd.nextDouble());
-        if (Espur.showOnlyGuesses || rnd.nextDouble() > 0.3 && !Espur.showOnlyTakePhoto)
+        if (Espur.showOnlyGuesses && Espur.showOnlyTakePhoto) {
+            showOutOfEverything();
+            return;
+        }
+
+        if (Espur.showOnlyGuesses || (rnd.nextDouble() > 0.3 && !Espur.showOnlyTakePhoto))
             showGuess();
         else
             showTakePhoto();

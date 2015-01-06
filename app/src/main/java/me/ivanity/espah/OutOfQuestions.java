@@ -18,7 +18,7 @@ public class OutOfQuestions extends Activity {
         ((Button)findViewById(R.id.btnLmk)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setResult(RESULT_CANCELED);
+                setResult(Espur.RESULT_LMK);
                 finish();
             }
         });

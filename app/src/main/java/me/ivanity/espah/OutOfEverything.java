@@ -8,24 +8,16 @@ import android.view.View;
 import android.widget.Button;
 
 
-public class OutOfPictures extends Activity {
+public class OutOfEverything extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_out_of_pictures);
-
+        setContentView(R.layout.activity_out_of_everything);
         ((Button)findViewById(R.id.btnLmk)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setResult(Espur.RESULT_LMK);
-                finish();
-            }
-        });
-        ((Button)findViewById(R.id.btnSelfies)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setResult(RESULT_OK);
                 finish();
             }
         });
@@ -35,7 +27,7 @@ public class OutOfPictures extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_out_of_pictures, menu);
+        getMenuInflater().inflate(R.menu.menu_out_of_everything, menu);
         return true;
     }
 
@@ -53,4 +45,5 @@ public class OutOfPictures extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

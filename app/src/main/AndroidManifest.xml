@@ -51,6 +51,10 @@
             android:name="me.ivanity.espah.OutOfQuestions"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="me.ivanity.espah.OutOfEverything"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>
