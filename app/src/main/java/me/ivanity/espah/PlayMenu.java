@@ -30,7 +30,7 @@ public class PlayMenu extends EspurActivity {
         findViewById(R.id.btnPlayPublic).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showNewThing();
+                showTakePhoto();
             }
         });
 
@@ -132,7 +132,7 @@ public class PlayMenu extends EspurActivity {
             return;
         }
 
-        if (Espur.showOnlyGuesses || (rnd.nextDouble() > 0.3 && !Espur.showOnlyTakePhoto))
+        if (Espur.showOnlyGuesses || (rnd.nextDouble() > 0.6 && !Espur.showOnlyTakePhoto))
             showGuess();
         else
             showTakePhoto();
